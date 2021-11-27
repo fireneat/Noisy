@@ -12,7 +12,7 @@ These instructions will get you a copy of the project up and running on your loc
 Install `requests` if you do not have it already installed, using `pip`:
 
 ```
-pip install requests
+pip install -r requirements.txt
 ```
 
 ### Usage
