@@ -1,28 +1,23 @@
+# Help menu
 import argparse
+# Needed for timeout
 import datetime
+# Needed for parsing config.json (Line: 192)
 import json
+# Needed for output
 import logging
+# Needed to select a random Useragent, random wait times and so on
 import random
+# For checking if a url is correct (Line: 93)
 import re
-import sys
+# Needed for timeout to work
 import time
+from urllib.parse import urljoin, urlparse
 import requests
 from urllib3.exceptions import LocationParseError
 
 request_counter = -1
 sys_random = random.SystemRandom()
-
-
-try:                 # Python 2
-    from urllib.parse import urljoin, urlparse
-except ImportError:  # Python 3
-    from urlparse import urljoin, urlparse
-
-try:                 # Python 2
-    reload(sys)
-    sys.setdefaultencoding('latin-1')
-except NameError:    # Python 3
-    pass
 
 
 class Crawler:
