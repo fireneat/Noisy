@@ -25,7 +25,7 @@ except NameError:    # Python 3
     pass
 
 
-class Crawler(object):
+class Crawler:
     def __init__(self):
         """
         Initializes the Crawl class
