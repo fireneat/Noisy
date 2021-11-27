@@ -6,9 +6,12 @@ import random
 import re
 import sys
 import time
-
 import requests
 from urllib3.exceptions import LocationParseError
+
+
+sys_random = random.SystemRandom()
+
 
 try:                 # Python 2
     from urllib.parse import urljoin, urlparse
@@ -43,7 +46,7 @@ class Crawler(object):
         :param url: the url to visit
         :return: the response Requests object
         """
-        random_user_agent = random.choice(self._config["user_agents"])
+        random_user_agent = sys_random.choice(self._config["user_agents"])
         headers = {'user-agent': random_user_agent}
 
         response = requests.get(url, headers=headers, timeout=5)
@@ -154,14 +157,14 @@ class Crawler(object):
         if self._is_timeout_reached():
             raise self.CrawlerTimedOut
 
-        random_link = random.choice(self._links)
+        random_link = sys_random.choice(self._links)
         try:
             logging.info("Visiting {}".format(random_link))
             sub_page = self._request(random_link).content
             sub_links = self._extract_urls(sub_page, random_link)
 
             # sleep for a random amount of time
-            time.sleep(random.randrange(self._config["min_sleep"], self._config["max_sleep"]))
+            time.sleep(sys_random.randrange(self._config["min_sleep"], self._config["max_sleep"]))
 
             # make sure we have more than 1 link to pick from
             if len(sub_links) > 1:
@@ -230,7 +233,7 @@ class Crawler(object):
         self._start_time = datetime.datetime.now()
 
         while True:
-            url = random.choice(self._config["root_urls"])
+            url = sys_random.choice(self._config["root_urls"])
             try:
                 body = self._request(url).content
                 self._links = self._extract_urls(body, url)
