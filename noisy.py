@@ -33,6 +33,7 @@ class Crawler(object):
         self._config = {}
         self._links = []
         self._start_time = None
+        logging.info(f"Requests module version: {requests.__version__}")
 
     class CrawlerTimedOut(Exception):
         """
