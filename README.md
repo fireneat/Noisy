@@ -99,8 +99,9 @@ Some edge-cases examples are available on the `examples` folder. You can read mo
 ## Authors
 
 * **Itay Hury** - *Initial work* - [1tayH](https://github.com/1tayH)
+* **fireneat** - *Maintaining this fork* - [fireneat](https://github.com/fireneat)
 
-See also the list of [contributors](https://github.com/1tayH/Noisy/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/fireneat/Noisy/contributors) who participated in this project.
 
 ## License
 
