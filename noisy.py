@@ -9,7 +9,7 @@ import time
 import requests
 from urllib3.exceptions import LocationParseError
 
-
+request_counter = -1
 sys_random = random.SystemRandom()
 
 
@@ -46,6 +46,15 @@ class Crawler(object):
         :param url: the url to visit
         :return: the response Requests object
         """
+
+        global request_counter
+        request_counter += 1
+        if request_counter > 0:
+            if request_counter == 1:
+                logging.info(f'Done {request_counter} request so far!')
+            else:
+                logging.info(f'Done {request_counter} requests so far!')
+            print('')
         random_user_agent = sys_random.choice(self._config["user_agents"])
         headers = {'user-agent': random_user_agent}
 
