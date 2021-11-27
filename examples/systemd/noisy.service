@@ -1,10 +1,45 @@
 [Unit]
 Description=Simple random DNS, HTTP/S internet traffic noise generator
 
+#https://www.freedesktop.org/wiki/Software/systemd/NetworkTarget/
+After=network-online.target
+Wants=network-online.target
+
 [Service]
 User=noisy
 WorkingDirectory=/opt/noisy
-ExecStart=/usr/bin/python /opt/noisy/noisy.py --config /opt/noisy/config.json
+ExecStart=/usr/bin/python3 /opt/noisy/noisy.py --config /opt/noisy/config.json
+ProtectHome=true
+#Set "true" to "read-only" if you have Noisy in /home
+
+#Only enable this if Noisy isn't in your /home directory
+#DynamicUser=true
+CapabilityBoundingSet=
+LockPersonality=true
+MemoryDenyWriteExecute=true
+NoNewPrivileges=true
+RestrictNamespaces=true
+RestrictRealtime=true
+RestrictSUIDSGID=true
+RestrictAddressFamilies=AF_INET AF_INET6
+RemoveIPC=true
+PrivateIPC=true
+PrivateTmp=true
+PrivateDevices=true
+PrivateUsers=true
+ProtectProc=invisible
+ProtectClock=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+ProtectControlGroups=true
+ProtectSystem=strict
+ProtectHostname=true
+ProcSubset=pid
+SystemCallArchitectures=native
+SystemCallFilter=@system-service
+SystemCallFilter=~@privileged @resources
+UMask=0077
 
 [Install]
 WantedBy=multi-user.target
