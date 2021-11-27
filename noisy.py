@@ -253,6 +253,9 @@ class Crawler(object):
 
             except requests.exceptions.RequestException:
                 logging.warning("Error connecting to root url: {}".format(url))
+                logging.warning("Do you have a working internet connection?")
+                time.sleep(1.5)
+            # https://docs.python-requests.org/en/latest/user/quickstart/#errors-and-exceptions
 
             except MemoryError:
                 logging.warning("Error: content at url: {} is exhausting the memory".format(url))
