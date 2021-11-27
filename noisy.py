@@ -56,6 +56,7 @@ class Crawler(object):
                 logging.info(f'Done {request_counter} requests so far!')
             print('')
         random_user_agent = sys_random.choice(self._config["user_agents"])
+        logging.info(f'Useragent for this run "{random_user_agent}"')
         headers = {'user-agent': random_user_agent}
 
         response = requests.get(url, headers=headers, timeout=5)
