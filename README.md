@@ -82,13 +82,9 @@ DEBUG:urllib3.connectionpool:https://www.reddit.com:443 "GET /user/Saditon HTTP/
 
 `docker build -t noisy .`
 
-**Or** if you'd like to build it for a **Raspberry Pi** (running Raspbian stretch):
-
-`docker build -f Dockerfile.pi -t noisy .`
-
 2. Create the container and run:
 
-`docker run -it noisy --config config.json`
+`docker run -it noisy`
 
 ## Some examples
 
