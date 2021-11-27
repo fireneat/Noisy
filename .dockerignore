@@ -1,0 +1,7 @@
+#Folders
+examples
+.git
+
+#Files
+.gitignore
+.dockerignore
