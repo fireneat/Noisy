@@ -39,7 +39,6 @@ class Crawler(object):
         """
         Raised when the specified timeout is exceeded
         """
-        pass
 
     def _request(self, url):
         """
@@ -59,7 +58,6 @@ class Crawler(object):
         random_user_agent = sys_random.choice(self._config["user_agents"])
         logging.info(f'Useragent for this run "{random_user_agent}"')
         headers = {'user-agent': random_user_agent}
-
         response = requests.get(url, headers=headers, timeout=5)
 
         return response
@@ -68,8 +66,8 @@ class Crawler(object):
     def _normalize_link(link, root_url):
         """
         Normalizes links extracted from the DOM by making them all absolute, so
-        we can request them, for example, turns a "/images" link extracted from https://imgur.com
-        to "https://imgur.com/images"
+        we can request them, for example, turns a "/images" link extracted from
+        https://imgur.com to "https://imgur.com/images"
         :param link: link found in the DOM
         :param root_url: the URL the DOM was loaded from
         :return: absolute link
@@ -134,7 +132,8 @@ class Crawler(object):
         :param root_url: the root URL of the given body
         :return: list of extracted links
         """
-        pattern = r"href=[\"'](?!#)(.*?)[\"'].*?"  # ignore links starting with #, no point in re-visiting the same page
+        pattern = r"href=[\"'](?!#)(.*?)[\"'].*?"
+        # ignore links starting with #, no point in re-visiting the same page
         urls = re.findall(pattern, str(body))
 
         normalize_urls = [self._normalize_link(url, root_url) for url in urls]
@@ -194,8 +193,8 @@ class Crawler(object):
 
     def load_config_file(self, file_path):
         """
-        Loads and decodes a JSON config file, sets the config of the crawler instance
-        to the loaded one
+        Loads and parses a JSON config file, sets the config
+        of the crawler instance to the loaded one
         :param file_path: path of the config file
         :return:
         """
@@ -205,7 +204,7 @@ class Crawler(object):
 
     def set_config(self, config):
         """
-        Sets the config of the crawler instance to the provided dict
+        Sets the config of the crawler instance (config.json)
         :param config: dict of configuration options, for example:
         {
             "root_urls": [],
@@ -241,6 +240,7 @@ class Crawler(object):
         Collects links from our root urls, stores them and then calls
         `_browse_from_links` to browse them
         """
+        # Needed for _is_timeout_reached
         self._start_time = datetime.datetime.now()
 
         while True:
@@ -266,6 +266,7 @@ class Crawler(object):
             except self.CrawlerTimedOut:
                 logging.info("Timeout has exceeded, exiting")
                 return
+
 
 def main():
     parser = argparse.ArgumentParser()
