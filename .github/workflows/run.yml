@@ -1,4 +1,4 @@
-name: Python application
+name: Run Noisy
 
 on: [pull_request, push]
 
