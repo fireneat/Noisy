@@ -1,4 +1,4 @@
-FROM python:3.10.0-alpine
+FROM python:3.10-alpine
 RUN adduser noisy --disabled-password
 USER noisy
 WORKDIR /noisy
