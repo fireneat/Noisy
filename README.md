@@ -35,7 +35,7 @@ python3 noisy.py
 
 The program can accept a number of command line arguments:
 ```
-$ python noisy.py --help
+$ python3 noisy.py --help
 usage: noisy.py [-h] [-l] [-c] [-t]
 
 optional arguments:

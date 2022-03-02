@@ -1,6 +1,7 @@
 #Folders
 examples
 .git
+.github
 
 #Files
 .gitignore
