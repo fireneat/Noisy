@@ -1,0 +1,22 @@
+name: Python application
+
+on: [pull_request, push]
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+        cache: pip
+
+    - name: Install dependencies
+      run: |
+        pip3 install -r requirements.txt
+    - name: Run Noisy
+      run: |
+        python3 noisy.py --timeout 60
