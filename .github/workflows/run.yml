@@ -8,15 +8,22 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Set up Python 3.10
+    - name: Set up Python 3.11
       uses: actions/setup-python@v4
       with:
-        python-version: "3.10"
+        python-version: "3.11"
         cache: pip
 
     - name: Install dependencies
       run: |
         pip3 install -r requirements.txt
     - name: Run Noisy
+      run: |
+        python3 noisy.py --timeout 60
+
+    - name: Install tested dependencies
+      run: |
+        pip3 install -r requirements_tested.txt
+    - name: Run Noisy with tested dependencies
       run: |
         python3 noisy.py --timeout 60
